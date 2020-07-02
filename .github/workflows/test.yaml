@@ -1,0 +1,37 @@
+---
+# @see https://help.github.com/ja/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+name: Test
+on:
+  push:
+    branches:
+      - "*"
+jobs:
+  test:
+    name: Test
+    timeout-minutes: 5
+    strategy:
+      matrix:
+        os: ["ubuntu-latest"]
+        ruby: ["2.7"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v1
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+
+      - name: Set up Gems
+        run: |
+          gem update --system --no-document
+          gem install bundler --no-document
+          bundle install --jobs 4 --retry 3 --path=.bundle
+          cd app/
+          bundle install --jobs 4 --retry 3 --path=.bundle
+
+      - name: Dummy test
+        run: |
+          cd app/
+          bundle exec rake -T
