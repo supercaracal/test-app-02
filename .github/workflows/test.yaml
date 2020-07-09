@@ -40,10 +40,6 @@ jobs:
           gem update --system --no-document
           gem install bundler --no-document
           bundle install --jobs 4 --retry 3 --path=.bundle
-          cd app/
-          bundle install --jobs 4 --retry 3 --path=.bundle
 
       - name: Dummy test
-        run: |
-          cd app/
-          bundle exec rake -T
+        run: bundle exec rake -T
