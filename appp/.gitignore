@@ -1,6 +1,0 @@
-.bundle
-log/*
-tmp/*
-Gemfile.lock
-config/master.key
-.ruby-version
