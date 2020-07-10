@@ -1,4 +1,5 @@
 ---
 # MEMO: https://docs.github.com/ja/actions/reference/events-that-trigger-workflows
-name: test-app-02
-type: rails
+deploy:
+  pre:
+    - echo "Start deploy"
