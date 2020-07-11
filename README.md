@@ -2,7 +2,7 @@
 
 ```
 $ cat /etc/systemd/system/puma.service
-Unit]
+[Unit]
 Description=Puma HTTP Server
 
 [Service]
