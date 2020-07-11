@@ -23,17 +23,11 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
 
-      - name: Cache dependent gems A
+      - name: Cache dependent gems
         uses: actions/cache@v1
         with:
           path: .bundle
-          key: "local-bundle-ruby-${{ matrix.ruby }}-on-${{ matrix.os }}-0001"
-
-      - name: Cache dependent gems B
-        uses: actions/cache@v1
-        with:
-          path: app/.bundle
-          key: "local-app-bundle-ruby-${{ matrix.ruby }}-on-${{ matrix.os }}-0001"
+          key: "gems-ruby-${{ matrix.ruby }}-on-${{ matrix.os }}-0001"
 
       - name: Set up Gems
         run: |
