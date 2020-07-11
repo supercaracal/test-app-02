@@ -5,3 +5,10 @@ set :ssh_options, user: ENV['DEPLOY_USER'], auth_methods: %w[publickey]
 set :bundle_flags, '--quiet'
 set :bundle_path, -> { nil }
 set :bundle_without, nil
+set :linked_dirs, %w[log tmp]
+
+namespace :deploy do
+  task :published do
+    execute :touch, release_path.join('tmp/restart.txt')
+  end
+end
