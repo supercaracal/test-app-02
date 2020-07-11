@@ -1,2 +1,5 @@
 ---
-# MEMO: https://docs.github.com/ja/actions/reference/events-that-trigger-workflows
+dependencies:
+  bundler:
+    without:
+      - test
