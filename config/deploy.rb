@@ -9,6 +9,8 @@ set :linked_dirs, %w[log tmp]
 
 namespace :deploy do
   task :published do
-    execute :touch, release_path.join('tmp/restart.txt')
+    on roles(:all) do |host|
+      execute :touch, release_path.join('tmp/restart.txt')
+    end
   end
 end
