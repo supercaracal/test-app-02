@@ -11,7 +11,9 @@ set :bundle_config, deployment: false
 namespace :deploy do
   task :published do
     on roles(:all) do |host|
-      execute :touch, release_path.join('tmp/restart.txt')
+      within release_path do
+        execute :bundle, :exec, :pumactl, :restart
+      end
     end
   end
 end
