@@ -6,6 +6,7 @@ set :bundle_flags, '--quiet'
 set :bundle_path, -> { nil }
 set :bundle_without, nil
 set :linked_dirs, %w[log tmp]
+set :bundle_config, deployment: false
 
 namespace :deploy do
   task :published do
