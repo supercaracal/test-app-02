@@ -11,8 +11,9 @@ set :bundle_config, deployment: false
 namespace :deploy do
   task :published do
     on roles(:all) do |host|
-      pid = capture :cat, release_path.join('tmp', 'pids', 'server.pid')
-      execute :kill, '-SIGUSR2', pid
+      # pid = capture :cat, release_path.join('tmp', 'pids', 'server.pid')
+      # execute :kill, '-SIGUSR2', pid
+      execute :sudo, :systemctl, :restart, 'puma.service'
     end
   end
 end
