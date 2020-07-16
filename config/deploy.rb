@@ -11,10 +11,8 @@ set :bundle_config, deployment: false
 namespace :deploy do
   task :published do
     on roles(:all) do |host|
-      within release_path do
-        File.open('tmp/pids/server.pid') do |f|
-          execute 'kill', '-SIGUSR2', f.gets.strip
-        end
+      File.open release_path.join('tmp', 'pids', 'server.pid') do |f|
+        execute :kill, '-SIGUSR2', f.gets.strip
       end
     end
   end
