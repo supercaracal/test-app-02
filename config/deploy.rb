@@ -12,7 +12,9 @@ namespace :deploy do
   task :published do
     on roles(:all) do |host|
       within release_path do
-        execute :bundle, :exec, :pumactl, :restart
+        File.open('tmp/pids/server.pid') do |f|
+          execute 'kill', '-SIGUSR2', f.gets.strip
+        end
       end
     end
   end
